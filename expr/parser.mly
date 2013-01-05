@@ -6,12 +6,18 @@ open Ast
 %token <float> FLOAT
 %token LPAR RPAR
 %token PLUS
-%token EOF
+%token EOF EOL
 
-%start exp
-%type <Ast.any_exp> exp
+%left PLUS
+
+%start main
+%type <Ast.any_exp> main
 
 %%
+
+main:
+| exp EOL { $1 }
+;
 
 exp:
 | INT           { Exp (Int $1) }
@@ -22,5 +28,6 @@ exp:
   let Exp f = $3 in
   match type_of e, type_of f with
   | TInt, TInt -> Exp (BinOp(e, plusi, f))
-  | _          -> raise Parse_error
+  | _          -> raise Type_error
 }
+;

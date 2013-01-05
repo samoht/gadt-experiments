@@ -20,7 +20,7 @@ type _ exp =
 
 type any_exp = Exp: _ exp -> any_exp
 
-exception Cast_error
+exception Type_error
 
 let type_of: type t. t exp -> t typ = function
   | Int _         -> TInt

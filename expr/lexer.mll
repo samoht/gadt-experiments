@@ -4,7 +4,8 @@
 
 let int = '-'? ['0'-'9']+
 let float = int ['.'] int?
-let space = [' ' '\t' '\r' '\n']
+let space = [' ' '\t' '\r']
+let eol   = ['\n']
 
 rule token = parse
 | space  { token lexbuf }
@@ -13,6 +14,7 @@ rule token = parse
 | "+"    { PLUS }
 | int    { INT (int_of_string (Lexing.lexeme lexbuf)) }
 | float  { FLOAT (float_of_string (Lexing.lexeme lexbuf)) }
+| eol    { EOL }
 | eof    { EOF }
 | _      { let token = Lexing.lexeme lexbuf in
            Printf.eprintf "lexer error: '%s' is not a valid token\n" token;
