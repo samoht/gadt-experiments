@@ -27,7 +27,8 @@ exp:
   let Exp e = $1 in
   let Exp f = $3 in
   match type_of e, type_of f with
-  | TInt, TInt -> Exp (BinOp(e, plusi, f))
-  | _          -> raise Type_error
+  | TInt  , TInt   -> Exp (BinOp(e, plus_int  , f))
+  | TFloat, TFloat -> Exp (BinOp(e, plus_float, f))
+  | _     , _      -> raise Type_error
 }
 ;

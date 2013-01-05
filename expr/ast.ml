@@ -10,8 +10,8 @@ type ('a,'b,'c) binop = {
 
 let binop name f ty = { name; f; ty }
 
-let plusi = binop "+" (+) TInt
-let plusf = binop "+." (+.) TFloat
+let plus_int   = binop "+" (+)  TInt
+let plus_float = binop "+" (+.) TFloat
 
 type _ exp =
   | Int  : int -> int exp
