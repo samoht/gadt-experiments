@@ -3,3 +3,4 @@ all:
 
 clean:
 	ocamlbuild -clean
+	rm -f *~
